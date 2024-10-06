@@ -9,7 +9,7 @@ interface Props extends React.HTMLAttributes<HTMLDivElement> {}
 const ActivityItem = forwardRef<HTMLDivElement, Props>(({ className }, ref) => {
     return (
         <div className={classNames("grid grid-cols-[auto_1fr] gap-2 border-b pb-3", className)} ref={ref}>
-            <UserIcon src={"/images/user/1.jpg"} />
+            <UserIcon src={"/images/user/wiggins.jpg"} />
 
             <div className="grid grid-rows-2">
                 <a href="#" className="font-bold text-base opacity-90 truncate">

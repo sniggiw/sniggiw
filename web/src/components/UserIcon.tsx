@@ -8,7 +8,7 @@ interface Props extends React.HTMLAttributes<HTMLDivElement> {
 
 const UserIcon = forwardRef<HTMLDivElement, Props>(({ className, src }, ref) => {
     return (
-        <div className={classNames("hover:scale-125 duration-300 cursor-pointer h-12", className)} ref={ref}>
+        <div className={classNames("hover:scale-125 duration-300 cursor-pointer overflow-hidden h-12", className)} ref={ref}>
             <LazyLoadImage src={src} className={classNames("w-12 h-12 rounded-lg object-cover", className)} />
         </div>
     );
