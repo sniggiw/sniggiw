@@ -15,7 +15,7 @@ export default function Navbar() {
     };
 
     return (
-        <main className="bg-white shadow-sm border-t-4 border-rose-600">
+        <main className="bg-white shadow-sm border-t-4 border-rose-600 mb-6">
             <section className="lg:container px-3 py-3 grid grid-cols-[1fr_auto]">
                 <div className="hidden lg:flex items-center gap-2">
                     <div className="flex items-center gap-1 text-rose-600">
