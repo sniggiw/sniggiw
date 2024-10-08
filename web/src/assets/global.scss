@@ -2,6 +2,9 @@
 
 a {
     @apply hover:text-rose-600;
+    &.active {
+        @apply text-rose-600;
+    }
 }
 
 body {

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Button, Drawer } from "antd";
 import { Youtube, HamburgerButton } from "@icon-park/react";
 import menus from "../config/menus";
+import { Link } from "@tanstack/react-router";
 
 export default function Navbar() {
     const [open, setOpen] = useState(false);
@@ -18,17 +19,17 @@ export default function Navbar() {
         <main className="bg-white shadow-sm border-t-4 border-rose-600 mb-6">
             <section className="lg:container px-3 py-3 grid grid-cols-[1fr_auto]">
                 <div className="hidden lg:flex items-center gap-2">
-                    <div className="flex items-center gap-1 text-rose-600">
+                    <Link to={"/"} className="flex items-center gap-1 text-rose-600">
                         <Youtube theme="outline" size="35" strokeWidth={4} />
                         <span className="text-2xl uppercase font-bold">sniggiw</span>
-                    </div>
+                    </Link>
 
                     <div className="lg:flex gap-2 hidden">
                         {menus.map((menu, i) => {
                             return (
-                                <a key={i} href="#" className="font-bold">
+                                <Link to={menu.to} key={i} href="#" className="font-bold">
                                     {menu.title}
-                                </a>
+                                </Link>
                             );
                         })}
                     </div>
