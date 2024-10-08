@@ -14,8 +14,8 @@ import { createFileRoute } from '@tanstack/react-router'
 
 import { Route as rootRoute } from './pages/__root'
 import { Route as FrontRouteImport } from './pages/front/route'
-import { Route as FrontSystemImport } from './pages/front/system'
-import { Route as FrontProjectImport } from './pages/front/project'
+import { Route as FrontChapterSystemImport } from './pages/front/chapter/system'
+import { Route as FrontChapterProjectImport } from './pages/front/chapter/project'
 
 // Create Virtual Routes
 
@@ -33,13 +33,13 @@ const IndexLazyRoute = IndexLazyImport.update({
   getParentRoute: () => rootRoute,
 } as any).lazy(() => import('./pages/index.lazy').then((d) => d.Route))
 
-const FrontSystemRoute = FrontSystemImport.update({
-  path: '/system',
+const FrontChapterSystemRoute = FrontChapterSystemImport.update({
+  path: '/chapter/system',
   getParentRoute: () => FrontRouteRoute,
 } as any)
 
-const FrontProjectRoute = FrontProjectImport.update({
-  path: '/project',
+const FrontChapterProjectRoute = FrontChapterProjectImport.update({
+  path: '/chapter/project',
   getParentRoute: () => FrontRouteRoute,
 } as any)
 
@@ -61,18 +61,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof FrontRouteImport
       parentRoute: typeof rootRoute
     }
-    '/front/project': {
-      id: '/front/project'
-      path: '/project'
-      fullPath: '/front/project'
-      preLoaderRoute: typeof FrontProjectImport
+    '/front/chapter/project': {
+      id: '/front/chapter/project'
+      path: '/chapter/project'
+      fullPath: '/front/chapter/project'
+      preLoaderRoute: typeof FrontChapterProjectImport
       parentRoute: typeof FrontRouteImport
     }
-    '/front/system': {
-      id: '/front/system'
-      path: '/system'
-      fullPath: '/front/system'
-      preLoaderRoute: typeof FrontSystemImport
+    '/front/chapter/system': {
+      id: '/front/chapter/system'
+      path: '/chapter/system'
+      fullPath: '/front/chapter/system'
+      preLoaderRoute: typeof FrontChapterSystemImport
       parentRoute: typeof FrontRouteImport
     }
   }
@@ -81,13 +81,13 @@ declare module '@tanstack/react-router' {
 // Create and export the route tree
 
 interface FrontRouteRouteChildren {
-  FrontProjectRoute: typeof FrontProjectRoute
-  FrontSystemRoute: typeof FrontSystemRoute
+  FrontChapterProjectRoute: typeof FrontChapterProjectRoute
+  FrontChapterSystemRoute: typeof FrontChapterSystemRoute
 }
 
 const FrontRouteRouteChildren: FrontRouteRouteChildren = {
-  FrontProjectRoute: FrontProjectRoute,
-  FrontSystemRoute: FrontSystemRoute,
+  FrontChapterProjectRoute: FrontChapterProjectRoute,
+  FrontChapterSystemRoute: FrontChapterSystemRoute,
 }
 
 const FrontRouteRouteWithChildren = FrontRouteRoute._addFileChildren(
@@ -97,31 +97,36 @@ const FrontRouteRouteWithChildren = FrontRouteRoute._addFileChildren(
 export interface FileRoutesByFullPath {
   '/': typeof IndexLazyRoute
   '/front': typeof FrontRouteRouteWithChildren
-  '/front/project': typeof FrontProjectRoute
-  '/front/system': typeof FrontSystemRoute
+  '/front/chapter/project': typeof FrontChapterProjectRoute
+  '/front/chapter/system': typeof FrontChapterSystemRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexLazyRoute
   '/front': typeof FrontRouteRouteWithChildren
-  '/front/project': typeof FrontProjectRoute
-  '/front/system': typeof FrontSystemRoute
+  '/front/chapter/project': typeof FrontChapterProjectRoute
+  '/front/chapter/system': typeof FrontChapterSystemRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexLazyRoute
   '/front': typeof FrontRouteRouteWithChildren
-  '/front/project': typeof FrontProjectRoute
-  '/front/system': typeof FrontSystemRoute
+  '/front/chapter/project': typeof FrontChapterProjectRoute
+  '/front/chapter/system': typeof FrontChapterSystemRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/front' | '/front/project' | '/front/system'
+  fullPaths: '/' | '/front' | '/front/chapter/project' | '/front/chapter/system'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/front' | '/front/project' | '/front/system'
-  id: '__root__' | '/' | '/front' | '/front/project' | '/front/system'
+  to: '/' | '/front' | '/front/chapter/project' | '/front/chapter/system'
+  id:
+    | '__root__'
+    | '/'
+    | '/front'
+    | '/front/chapter/project'
+    | '/front/chapter/system'
   fileRoutesById: FileRoutesById
 }
 
@@ -157,16 +162,16 @@ export const routeTree = rootRoute
     "/front": {
       "filePath": "front/route.tsx",
       "children": [
-        "/front/project",
-        "/front/system"
+        "/front/chapter/project",
+        "/front/chapter/system"
       ]
     },
-    "/front/project": {
-      "filePath": "front/project.tsx",
+    "/front/chapter/project": {
+      "filePath": "front/chapter/project.tsx",
       "parent": "/front"
     },
-    "/front/system": {
-      "filePath": "front/system.tsx",
+    "/front/chapter/system": {
+      "filePath": "front/chapter/system.tsx",
       "parent": "/front"
     }
   }
