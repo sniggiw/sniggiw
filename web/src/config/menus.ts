@@ -5,6 +5,4 @@ export default [
     { title: "最近更新", to: "/front/video/" },
     { title: "交流讨论", to: "/front/topic/" },
     { title: "签到打卡", to: "/front/sign/" },
-    { title: "在线文档", to: "/" },
-    { title: "在线文档", to: "/" },
 ];
