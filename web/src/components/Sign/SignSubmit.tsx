@@ -13,7 +13,7 @@ const Emotions = [
 export default function SignSubmit() {
     return (
         <Card title="签到快乐，再接再厉">
-            <div className="flex flex-col gap-3">
+            <div className="flex flex-col gap-3 flex-wrap">
                 <Input placeholder="你今天的心情或最想说的话" size="large" />
                 <Input placeholder="验证码" size="large" />
             </div>
