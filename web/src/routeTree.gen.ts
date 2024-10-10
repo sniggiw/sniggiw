@@ -15,6 +15,7 @@ import { createFileRoute } from '@tanstack/react-router'
 import { Route as rootRoute } from './pages/__root'
 import { Route as FrontRouteImport } from './pages/front/route'
 import { Route as FrontVideoIndexImport } from './pages/front/video/index'
+import { Route as FrontTopicIndexImport } from './pages/front/topic/index'
 import { Route as FrontLessonIndexImport } from './pages/front/lesson/index'
 import { Route as FrontChapterSystemImport } from './pages/front/chapter/system'
 import { Route as FrontChapterProjectImport } from './pages/front/chapter/project'
@@ -37,6 +38,11 @@ const IndexLazyRoute = IndexLazyImport.update({
 
 const FrontVideoIndexRoute = FrontVideoIndexImport.update({
   path: '/video/',
+  getParentRoute: () => FrontRouteRoute,
+} as any)
+
+const FrontTopicIndexRoute = FrontTopicIndexImport.update({
+  path: '/topic/',
   getParentRoute: () => FrontRouteRoute,
 } as any)
 
@@ -94,6 +100,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof FrontLessonIndexImport
       parentRoute: typeof FrontRouteImport
     }
+    '/front/topic/': {
+      id: '/front/topic/'
+      path: '/topic'
+      fullPath: '/front/topic'
+      preLoaderRoute: typeof FrontTopicIndexImport
+      parentRoute: typeof FrontRouteImport
+    }
     '/front/video/': {
       id: '/front/video/'
       path: '/video'
@@ -110,6 +123,7 @@ interface FrontRouteRouteChildren {
   FrontChapterProjectRoute: typeof FrontChapterProjectRoute
   FrontChapterSystemRoute: typeof FrontChapterSystemRoute
   FrontLessonIndexRoute: typeof FrontLessonIndexRoute
+  FrontTopicIndexRoute: typeof FrontTopicIndexRoute
   FrontVideoIndexRoute: typeof FrontVideoIndexRoute
 }
 
@@ -117,6 +131,7 @@ const FrontRouteRouteChildren: FrontRouteRouteChildren = {
   FrontChapterProjectRoute: FrontChapterProjectRoute,
   FrontChapterSystemRoute: FrontChapterSystemRoute,
   FrontLessonIndexRoute: FrontLessonIndexRoute,
+  FrontTopicIndexRoute: FrontTopicIndexRoute,
   FrontVideoIndexRoute: FrontVideoIndexRoute,
 }
 
@@ -130,6 +145,7 @@ export interface FileRoutesByFullPath {
   '/front/chapter/project': typeof FrontChapterProjectRoute
   '/front/chapter/system': typeof FrontChapterSystemRoute
   '/front/lesson': typeof FrontLessonIndexRoute
+  '/front/topic': typeof FrontTopicIndexRoute
   '/front/video': typeof FrontVideoIndexRoute
 }
 
@@ -139,6 +155,7 @@ export interface FileRoutesByTo {
   '/front/chapter/project': typeof FrontChapterProjectRoute
   '/front/chapter/system': typeof FrontChapterSystemRoute
   '/front/lesson': typeof FrontLessonIndexRoute
+  '/front/topic': typeof FrontTopicIndexRoute
   '/front/video': typeof FrontVideoIndexRoute
 }
 
@@ -149,6 +166,7 @@ export interface FileRoutesById {
   '/front/chapter/project': typeof FrontChapterProjectRoute
   '/front/chapter/system': typeof FrontChapterSystemRoute
   '/front/lesson/': typeof FrontLessonIndexRoute
+  '/front/topic/': typeof FrontTopicIndexRoute
   '/front/video/': typeof FrontVideoIndexRoute
 }
 
@@ -160,6 +178,7 @@ export interface FileRouteTypes {
     | '/front/chapter/project'
     | '/front/chapter/system'
     | '/front/lesson'
+    | '/front/topic'
     | '/front/video'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -168,6 +187,7 @@ export interface FileRouteTypes {
     | '/front/chapter/project'
     | '/front/chapter/system'
     | '/front/lesson'
+    | '/front/topic'
     | '/front/video'
   id:
     | '__root__'
@@ -176,6 +196,7 @@ export interface FileRouteTypes {
     | '/front/chapter/project'
     | '/front/chapter/system'
     | '/front/lesson/'
+    | '/front/topic/'
     | '/front/video/'
   fileRoutesById: FileRoutesById
 }
@@ -215,6 +236,7 @@ export const routeTree = rootRoute
         "/front/chapter/project",
         "/front/chapter/system",
         "/front/lesson/",
+        "/front/topic/",
         "/front/video/"
       ]
     },
@@ -228,6 +250,10 @@ export const routeTree = rootRoute
     },
     "/front/lesson/": {
       "filePath": "front/lesson/index.tsx",
+      "parent": "/front"
+    },
+    "/front/topic/": {
+      "filePath": "front/topic/index.tsx",
       "parent": "/front"
     },
     "/front/video/": {
