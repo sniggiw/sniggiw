@@ -14,6 +14,7 @@ import { createFileRoute } from '@tanstack/react-router'
 
 import { Route as rootRoute } from './pages/__root'
 import { Route as FrontRouteImport } from './pages/front/route'
+import { Route as AuthRegisterImport } from './pages/auth/register'
 import { Route as AuthLoginImport } from './pages/auth/login'
 import { Route as FrontVideoIndexImport } from './pages/front/video/index'
 import { Route as FrontTopicIndexImport } from './pages/front/topic/index'
@@ -37,6 +38,11 @@ const IndexLazyRoute = IndexLazyImport.update({
   path: '/',
   getParentRoute: () => rootRoute,
 } as any).lazy(() => import('./pages/index.lazy').then((d) => d.Route))
+
+const AuthRegisterRoute = AuthRegisterImport.update({
+  path: '/auth/register',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const AuthLoginRoute = AuthLoginImport.update({
   path: '/auth/login',
@@ -96,6 +102,13 @@ declare module '@tanstack/react-router' {
       path: '/auth/login'
       fullPath: '/auth/login'
       preLoaderRoute: typeof AuthLoginImport
+      parentRoute: typeof rootRoute
+    }
+    '/auth/register': {
+      id: '/auth/register'
+      path: '/auth/register'
+      fullPath: '/auth/register'
+      preLoaderRoute: typeof AuthRegisterImport
       parentRoute: typeof rootRoute
     }
     '/front/chapter/project': {
@@ -171,6 +184,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexLazyRoute
   '/front': typeof FrontRouteRouteWithChildren
   '/auth/login': typeof AuthLoginRoute
+  '/auth/register': typeof AuthRegisterRoute
   '/front/chapter/project': typeof FrontChapterProjectRoute
   '/front/chapter/system': typeof FrontChapterSystemRoute
   '/front/lesson': typeof FrontLessonIndexRoute
@@ -183,6 +197,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexLazyRoute
   '/front': typeof FrontRouteRouteWithChildren
   '/auth/login': typeof AuthLoginRoute
+  '/auth/register': typeof AuthRegisterRoute
   '/front/chapter/project': typeof FrontChapterProjectRoute
   '/front/chapter/system': typeof FrontChapterSystemRoute
   '/front/lesson': typeof FrontLessonIndexRoute
@@ -196,6 +211,7 @@ export interface FileRoutesById {
   '/': typeof IndexLazyRoute
   '/front': typeof FrontRouteRouteWithChildren
   '/auth/login': typeof AuthLoginRoute
+  '/auth/register': typeof AuthRegisterRoute
   '/front/chapter/project': typeof FrontChapterProjectRoute
   '/front/chapter/system': typeof FrontChapterSystemRoute
   '/front/lesson/': typeof FrontLessonIndexRoute
@@ -210,6 +226,7 @@ export interface FileRouteTypes {
     | '/'
     | '/front'
     | '/auth/login'
+    | '/auth/register'
     | '/front/chapter/project'
     | '/front/chapter/system'
     | '/front/lesson'
@@ -221,6 +238,7 @@ export interface FileRouteTypes {
     | '/'
     | '/front'
     | '/auth/login'
+    | '/auth/register'
     | '/front/chapter/project'
     | '/front/chapter/system'
     | '/front/lesson'
@@ -232,6 +250,7 @@ export interface FileRouteTypes {
     | '/'
     | '/front'
     | '/auth/login'
+    | '/auth/register'
     | '/front/chapter/project'
     | '/front/chapter/system'
     | '/front/lesson/'
@@ -245,12 +264,14 @@ export interface RootRouteChildren {
   IndexLazyRoute: typeof IndexLazyRoute
   FrontRouteRoute: typeof FrontRouteRouteWithChildren
   AuthLoginRoute: typeof AuthLoginRoute
+  AuthRegisterRoute: typeof AuthRegisterRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexLazyRoute: IndexLazyRoute,
   FrontRouteRoute: FrontRouteRouteWithChildren,
   AuthLoginRoute: AuthLoginRoute,
+  AuthRegisterRoute: AuthRegisterRoute,
 }
 
 export const routeTree = rootRoute
@@ -267,7 +288,8 @@ export const routeTree = rootRoute
       "children": [
         "/",
         "/front",
-        "/auth/login"
+        "/auth/login",
+        "/auth/register"
       ]
     },
     "/": {
@@ -286,6 +308,9 @@ export const routeTree = rootRoute
     },
     "/auth/login": {
       "filePath": "auth/login.tsx"
+    },
+    "/auth/register": {
+      "filePath": "auth/register.tsx"
     },
     "/front/chapter/project": {
       "filePath": "front/chapter/project.tsx",
