@@ -62,7 +62,9 @@ export default function Navbar() {
                 </div>
 
                 <div className="justify-self-end flex gap-1">
-                    <Button type="primary">登录</Button>
+                    <Link to="/auth/login">
+                        <Button type="primary">登录</Button>
+                    </Link>
                     <Button>注册</Button>
                 </div>
             </section>

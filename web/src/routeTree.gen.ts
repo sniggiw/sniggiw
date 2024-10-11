@@ -14,6 +14,7 @@ import { createFileRoute } from '@tanstack/react-router'
 
 import { Route as rootRoute } from './pages/__root'
 import { Route as FrontRouteImport } from './pages/front/route'
+import { Route as AuthLoginImport } from './pages/auth/login'
 import { Route as FrontVideoIndexImport } from './pages/front/video/index'
 import { Route as FrontTopicIndexImport } from './pages/front/topic/index'
 import { Route as FrontSignIndexImport } from './pages/front/sign/index'
@@ -36,6 +37,11 @@ const IndexLazyRoute = IndexLazyImport.update({
   path: '/',
   getParentRoute: () => rootRoute,
 } as any).lazy(() => import('./pages/index.lazy').then((d) => d.Route))
+
+const AuthLoginRoute = AuthLoginImport.update({
+  path: '/auth/login',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const FrontVideoIndexRoute = FrontVideoIndexImport.update({
   path: '/video/',
@@ -83,6 +89,13 @@ declare module '@tanstack/react-router' {
       path: '/front'
       fullPath: '/front'
       preLoaderRoute: typeof FrontRouteImport
+      parentRoute: typeof rootRoute
+    }
+    '/auth/login': {
+      id: '/auth/login'
+      path: '/auth/login'
+      fullPath: '/auth/login'
+      preLoaderRoute: typeof AuthLoginImport
       parentRoute: typeof rootRoute
     }
     '/front/chapter/project': {
@@ -157,6 +170,7 @@ const FrontRouteRouteWithChildren = FrontRouteRoute._addFileChildren(
 export interface FileRoutesByFullPath {
   '/': typeof IndexLazyRoute
   '/front': typeof FrontRouteRouteWithChildren
+  '/auth/login': typeof AuthLoginRoute
   '/front/chapter/project': typeof FrontChapterProjectRoute
   '/front/chapter/system': typeof FrontChapterSystemRoute
   '/front/lesson': typeof FrontLessonIndexRoute
@@ -168,6 +182,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexLazyRoute
   '/front': typeof FrontRouteRouteWithChildren
+  '/auth/login': typeof AuthLoginRoute
   '/front/chapter/project': typeof FrontChapterProjectRoute
   '/front/chapter/system': typeof FrontChapterSystemRoute
   '/front/lesson': typeof FrontLessonIndexRoute
@@ -180,6 +195,7 @@ export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexLazyRoute
   '/front': typeof FrontRouteRouteWithChildren
+  '/auth/login': typeof AuthLoginRoute
   '/front/chapter/project': typeof FrontChapterProjectRoute
   '/front/chapter/system': typeof FrontChapterSystemRoute
   '/front/lesson/': typeof FrontLessonIndexRoute
@@ -193,6 +209,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/front'
+    | '/auth/login'
     | '/front/chapter/project'
     | '/front/chapter/system'
     | '/front/lesson'
@@ -203,6 +220,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/front'
+    | '/auth/login'
     | '/front/chapter/project'
     | '/front/chapter/system'
     | '/front/lesson'
@@ -213,6 +231,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/front'
+    | '/auth/login'
     | '/front/chapter/project'
     | '/front/chapter/system'
     | '/front/lesson/'
@@ -225,11 +244,13 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexLazyRoute: typeof IndexLazyRoute
   FrontRouteRoute: typeof FrontRouteRouteWithChildren
+  AuthLoginRoute: typeof AuthLoginRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexLazyRoute: IndexLazyRoute,
   FrontRouteRoute: FrontRouteRouteWithChildren,
+  AuthLoginRoute: AuthLoginRoute,
 }
 
 export const routeTree = rootRoute
@@ -245,7 +266,8 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
-        "/front"
+        "/front",
+        "/auth/login"
       ]
     },
     "/": {
@@ -261,6 +283,9 @@ export const routeTree = rootRoute
         "/front/topic/",
         "/front/video/"
       ]
+    },
+    "/auth/login": {
+      "filePath": "auth/login.tsx"
     },
     "/front/chapter/project": {
       "filePath": "front/chapter/project.tsx",
