@@ -52,9 +52,9 @@ export default function Navbar() {
                         <div className="grid grid-flow-row gap-2">
                             {menus.map((menu, i) => {
                                 return (
-                                    <a key={i} href="#" className="font-bold">
+                                    <Link to={menu.to} key={i} href="#" className="font-bold">
                                         {menu.title}
-                                    </a>
+                                    </Link>
                                 );
                             })}
                         </div>
