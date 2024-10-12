@@ -3,7 +3,7 @@ import { Link } from "@tanstack/react-router";
 
 interface Props extends React.HTMLAttributes<HTMLDivElement> {
     title: string;
-    img?: string;
+    // img?: string;
 }
 
 const menu = [
@@ -13,7 +13,7 @@ const menu = [
     { title: "网站首页", to: "/" },
 ];
 
-const AuthLayout = forwardRef<HTMLDivElement, Props>(({ title, img, children }, ref) => {
+const AuthLayout = forwardRef<HTMLDivElement, Props>(({ title, children }) => {
     return (
         <main className="w-screen h-screen overflow-y-auto flex justify-center items-center bg-[#2c3e50]">
             <section className="">

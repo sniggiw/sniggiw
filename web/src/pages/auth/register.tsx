@@ -1,7 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import AuthLayout from "@/layouts/AuthLayout";
 import { Button, Input } from "antd";
-import { Wechat } from "@icon-park/react";
 
 export const Route = createFileRoute("/auth/register")({
     component: Page,
