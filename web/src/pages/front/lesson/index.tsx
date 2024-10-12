@@ -13,7 +13,7 @@ export const Route = createFileRoute("/front/lesson/")({
                         <div className="border rounded-lg overflow-hidden" key={index}>
                             <div className="overflow-hidden cursor-pointer">
                                 <div className="hover:scale-110 duration-300">
-                                    <LazyLoadImage effect="blur" src={`/images/user/wiggins.jpg`} />
+                                    <LazyLoadImage effect="blur" src={`https://picsum.photos/id/${Random.integer(1, 100)}/400/250`} />
                                 </div>
                             </div>
                             <div className="py-3 px-5">
