@@ -13,9 +13,9 @@ const menu = [
     { title: "网站首页", to: "/" },
 ];
 
-const AuthLayout = forwardRef<HTMLDivElement, Props>(({ title, children }) => {
+const AuthLayout = forwardRef<HTMLDivElement, Props>(({ title, children }, ref) => {
     return (
-        <main className="w-screen h-screen overflow-y-auto flex justify-center items-center bg-[#2c3e50]">
+        <main ref={ref} className="w-screen h-screen overflow-y-auto flex justify-center items-center bg-[#2c3e50]">
             <section className="">
                 <div className="w-[400px] rounded-lg bg-gray-100 p-3">
                     <h2 className="text-center font-bold text-lg p-4">{title}</h2>
