@@ -9,7 +9,7 @@ interface Props extends React.HTMLAttributes<HTMLDivElement> {
 const menu = [
     { title: "用户登录", to: "/auth/login" },
     { title: "用户注册", to: "/auth/register" },
-    { title: "找回密码", to: "/" },
+    { title: "找回密码", to: "/auth/forget" },
     { title: "网站首页", to: "/" },
 ];
 

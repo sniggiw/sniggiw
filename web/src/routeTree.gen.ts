@@ -16,6 +16,7 @@ import { Route as rootRoute } from './pages/__root'
 import { Route as FrontRouteImport } from './pages/front/route'
 import { Route as AuthRegisterImport } from './pages/auth/register'
 import { Route as AuthLoginImport } from './pages/auth/login'
+import { Route as AuthForgetImport } from './pages/auth/forget'
 import { Route as FrontVideoIndexImport } from './pages/front/video/index'
 import { Route as FrontTopicIndexImport } from './pages/front/topic/index'
 import { Route as FrontSignIndexImport } from './pages/front/sign/index'
@@ -46,6 +47,11 @@ const AuthRegisterRoute = AuthRegisterImport.update({
 
 const AuthLoginRoute = AuthLoginImport.update({
   path: '/auth/login',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const AuthForgetRoute = AuthForgetImport.update({
+  path: '/auth/forget',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -95,6 +101,13 @@ declare module '@tanstack/react-router' {
       path: '/front'
       fullPath: '/front'
       preLoaderRoute: typeof FrontRouteImport
+      parentRoute: typeof rootRoute
+    }
+    '/auth/forget': {
+      id: '/auth/forget'
+      path: '/auth/forget'
+      fullPath: '/auth/forget'
+      preLoaderRoute: typeof AuthForgetImport
       parentRoute: typeof rootRoute
     }
     '/auth/login': {
@@ -183,6 +196,7 @@ const FrontRouteRouteWithChildren = FrontRouteRoute._addFileChildren(
 export interface FileRoutesByFullPath {
   '/': typeof IndexLazyRoute
   '/front': typeof FrontRouteRouteWithChildren
+  '/auth/forget': typeof AuthForgetRoute
   '/auth/login': typeof AuthLoginRoute
   '/auth/register': typeof AuthRegisterRoute
   '/front/chapter/project': typeof FrontChapterProjectRoute
@@ -196,6 +210,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexLazyRoute
   '/front': typeof FrontRouteRouteWithChildren
+  '/auth/forget': typeof AuthForgetRoute
   '/auth/login': typeof AuthLoginRoute
   '/auth/register': typeof AuthRegisterRoute
   '/front/chapter/project': typeof FrontChapterProjectRoute
@@ -210,6 +225,7 @@ export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexLazyRoute
   '/front': typeof FrontRouteRouteWithChildren
+  '/auth/forget': typeof AuthForgetRoute
   '/auth/login': typeof AuthLoginRoute
   '/auth/register': typeof AuthRegisterRoute
   '/front/chapter/project': typeof FrontChapterProjectRoute
@@ -225,6 +241,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/front'
+    | '/auth/forget'
     | '/auth/login'
     | '/auth/register'
     | '/front/chapter/project'
@@ -237,6 +254,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/front'
+    | '/auth/forget'
     | '/auth/login'
     | '/auth/register'
     | '/front/chapter/project'
@@ -249,6 +267,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/front'
+    | '/auth/forget'
     | '/auth/login'
     | '/auth/register'
     | '/front/chapter/project'
@@ -263,6 +282,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexLazyRoute: typeof IndexLazyRoute
   FrontRouteRoute: typeof FrontRouteRouteWithChildren
+  AuthForgetRoute: typeof AuthForgetRoute
   AuthLoginRoute: typeof AuthLoginRoute
   AuthRegisterRoute: typeof AuthRegisterRoute
 }
@@ -270,6 +290,7 @@ export interface RootRouteChildren {
 const rootRouteChildren: RootRouteChildren = {
   IndexLazyRoute: IndexLazyRoute,
   FrontRouteRoute: FrontRouteRouteWithChildren,
+  AuthForgetRoute: AuthForgetRoute,
   AuthLoginRoute: AuthLoginRoute,
   AuthRegisterRoute: AuthRegisterRoute,
 }
@@ -288,6 +309,7 @@ export const routeTree = rootRoute
       "children": [
         "/",
         "/front",
+        "/auth/forget",
         "/auth/login",
         "/auth/register"
       ]
@@ -305,6 +327,9 @@ export const routeTree = rootRoute
         "/front/topic/",
         "/front/video/"
       ]
+    },
+    "/auth/forget": {
+      "filePath": "auth/forget.tsx"
     },
     "/auth/login": {
       "filePath": "auth/login.tsx"
